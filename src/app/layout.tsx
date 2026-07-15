@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import VideoModal from "@/components/VideoModal";
 import Preloader from "@/components/Preloader";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Enthuzea 2k26",
@@ -90,6 +91,9 @@ export default function RootLayout({
             ✦ krish
           </span>
         </div>
+
+        {/* Vercel Web Analytics */}
+        <Analytics />
       </body>
     </html>
   );
