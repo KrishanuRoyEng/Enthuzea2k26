@@ -73,35 +73,29 @@ export default function Navigation() {
 
   return (
     <>
-      {/* ─── COLLEGE LOGO (Top Left) ─── */}
+      {/* ─── BRAND LOGOS (Centered on Mobile, Edges on Desktop) ─── */}
       <motion.div
-        className="fixed top-4 left-4 md:top-6 md:left-8 z-50 pointer-events-auto"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="fixed top-4 md:top-6 left-0 right-0 z-50 flex items-center justify-center gap-6 md:justify-between px-4 md:px-8 pointer-events-none"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <Link href="/">
+        {/* COLLEGE LOGO */}
+        <Link href="/" className="pointer-events-auto">
           <img 
             src="/College.svg" 
             alt="SVIST College Logo" 
-            className="w-14 sm:w-16 md:w-20 h-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.25)] transition-transform duration-300 hover:animate-[spin-y_3s_linear_infinite] active:animate-[spin-y_3s_linear_infinite] border-none outline-none"
+            className="w-12 sm:w-16 md:w-20 h-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.25)] transition-transform duration-300 hover:animate-[spin-y_3s_linear_infinite] active:animate-[spin-y_3s_linear_infinite] border-none outline-none"
             style={{ fetchPriority: 'high' } as React.CSSProperties}
           />
         </Link>
-      </motion.div>
 
-      {/* ─── ENTHUZEA LOGO (Top Right) ─── */}
-      <motion.div
-        className="fixed top-4 right-4 md:top-6 md:right-8 z-50 pointer-events-auto"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <Link href="/">
+        {/* ENTHUZEA LOGO */}
+        <Link href="/" className="pointer-events-auto">
           <img 
             src="/enthuzea-logo-Photoroom.svg" 
             alt="Enthuzea Logo" 
-            className="w-16 sm:w-20 md:w-24 h-auto object-contain drop-shadow-[0_0_20px_rgba(245,166,35,0.7)] transition-transform duration-300 hover:animate-[spin-y_3s_linear_infinite_reverse] active:animate-[spin-y_3s_linear_infinite_reverse] border-none outline-none"
+            className="w-14 sm:w-20 md:w-24 h-auto object-contain drop-shadow-[0_0_20px_rgba(245,166,35,0.7)] transition-transform duration-300 hover:animate-[spin-y_3s_linear_infinite_reverse] active:animate-[spin-y_3s_linear_infinite_reverse] border-none outline-none"
             style={{ fetchPriority: 'high' } as React.CSSProperties}
           />
         </Link>
