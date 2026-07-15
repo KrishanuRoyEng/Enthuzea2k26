@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import VideoModal from "@/components/VideoModal";
 import Preloader from "@/components/Preloader";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Enthuzea 2k26",
@@ -58,7 +59,7 @@ export default function RootLayout({
           <div className="absolute -bottom-[15%] -right-[10%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full bg-terracotta/[0.06] blur-[80px] animate-glow [animation-delay:2s]" />
           {/* Center gold accent */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[400px] max-h-[400px] rounded-full bg-gold/[0.04] blur-[120px] animate-glow [animation-delay:4s]" />
-          
+
           {/* Subtle Watermark */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center mix-blend-overlay opacity-[0.03] select-none">
             <span className="font-display font-black text-[15vw] leading-none text-cream whitespace-nowrap">Enthuzea&apos;26</span>
@@ -82,7 +83,7 @@ export default function RootLayout({
 
         {/* Global audio player */}
         <AudioPlayer />
-        
+
         {/* Global video popup */}
         <VideoModal />
 
@@ -108,6 +109,9 @@ export default function RootLayout({
             `}
           </Script>
         )}
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </body>
     </html>
   );
