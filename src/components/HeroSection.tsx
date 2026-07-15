@@ -220,6 +220,7 @@ export default function HeroSection() {
             src="/enthuzealogo.svg" 
             alt="Enthuzea 2K26" 
             className="w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(245,166,35,0.4)]" 
+            fetchPriority="high"
           />
         </motion.div>
 

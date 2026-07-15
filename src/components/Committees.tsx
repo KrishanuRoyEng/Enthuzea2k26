@@ -218,10 +218,9 @@ function LeadCard({
       </div>
 
       <div className="flex flex-col items-center gap-1 sm:gap-1.5 mt-1">
-        <span className={`px-2 sm:px-3 py-1 rounded-full ${colors.badge} border ${colors.border} text-[8px] sm:text-[9px] font-body font-bold tracking-[0.12em] uppercase ${colors.badgeText} animate-pulse`}>
-          ◆ Lead
+        <span className={`px-2 sm:px-3 py-1 rounded-full ${colors.badge} border ${colors.border} text-[9px] sm:text-[11px] font-body font-semibold tracking-wide ${colors.text}`}>
+          {lead.role}
         </span>
-        <span className={`text-[9px] sm:text-[11px] font-body font-semibold ${colors.text}`}>{lead.role}</span>
       </div>
     </div>
   );
@@ -283,7 +282,7 @@ function CommitteeCard({
 
   return (
     <motion.div
-      className={`relative rounded-2xl border ${colors.border} overflow-hidden bg-black/30 backdrop-blur-md transition-shadow duration-500`}
+      className={`relative rounded-2xl border ${colors.border} overflow-hidden bg-black/40 transition-shadow duration-500`}
       style={isOpen ? { boxShadow: colors.glow } : undefined}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -393,8 +392,23 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 export default function Committees() {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
 
-  const toggle = (id: string) =>
-    setOpenCategory((prev) => (prev === id ? null : id));
+  const toggle = (id: string) => {
+    setOpenCategory((prev) => {
+      const isClosing = prev === id;
+      
+      // Wait for framer-motion height animations (0.4s) to finish to prevent scroll jitter
+      setTimeout(() => {
+        const el = document.getElementById(`header-${id}`);
+        if (el) {
+          // Scroll with a 100px offset so it clears any top navigation or margins
+          const y = el.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 400);
+
+      return isClosing ? null : id;
+    });
+  };
 
   return (
     <section

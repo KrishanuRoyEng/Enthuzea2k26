@@ -126,7 +126,7 @@ export const committeeData: {
         { name: "Mr. Pritam Bhattacharya", designation: "Technical Assistant, CE", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/pritam-bhattacharya.webp" },
         { name: "Mrs. Yuthika Jana", designation: "Technical Assistant, ECE", photoUrl: null },
         { name: "Mrs. Mousumi Dhara", designation: "Technical Assistant, ECE", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/mousumi-dhara.webp" },
-        { name: "Mr. Santu Banerjee", designation: "SRM, SVIST", photoUrl: null },
+        { name: "Mr. Santu Banerjee", designation: "SRM, SVIST", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Santu_Banerjee.jpg" },
       ],
     },
     {
@@ -182,7 +182,7 @@ export const committeeData: {
       title: "Fest Subscription Collection",
       color: "rose",
       leads: [
-        { name: "Mr. Santu Banerjee", role: "Lead Coordinator", designation: "SRM, SVIST", photoUrl: null },
+        { name: "Mr. Santu Banerjee", role: "Lead Coordinator", designation: "SRM, SVIST", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Santu_Banerjee.jpg" },
       ],
       members: [
         { name: "Students nominated by Mr. Santu Banerjee", designation: "Student Representatives", photoUrl: null },

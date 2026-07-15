@@ -11,7 +11,7 @@ export const MEDIA_CONFIG = {
 
   // The video that plays when you click "Explore Enthuzea"
   // ⚠️ Re-encoded to 30fps for mobile compatibility — upload trailer_30fps.mp4 to Blob and update this URL
-  MODAL_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/trailer.mp4",
+  MODAL_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/trailer6.mp4",
 
   // The showcase video that plays automatically on the home page stage
   SHOWCASE_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/main.mp4",
@@ -42,5 +42,28 @@ export const MEDIA_CONFIG = {
    * Note: the crack-formation sound at t=700 ms is always synthesised
    * (it's a subtle resonant ting — no file slot needed for that phase).
    */
-  PRELOADER_SHATTER_SFX_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/shatter.mp3"
+  PRELOADER_SHATTER_SFX_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/shatter.mp3",
+
+  /**
+   * ─── Gallery Images ───────────────────────────────────────────────────────
+   *
+   * Add your Vercel Blob image URLs here. These will be used in the Gallery page.
+   * Recommended formats: .jpg, .webp (optimized for web, ideally under 1MB each).
+   */
+  GALLERY_IMAGES: [
+    // Add URLs here, for example:
+    // "https://<your-id>.public.blob.vercel-storage.com/gallery1.jpg",
+    // "https://<your-id>.public.blob.vercel-storage.com/gallery2.jpg",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/486209084_18347548717151567_3424051105179257200_n.jpg",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/486718450_18347548729151567_8051190521898562648_n.jpg",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/486761423_18347548747151567_6715262780689099294_n.jpg",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/487948122_18062845505289716_6582364510248164048_n.webp",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/488539991_18062845583289716_7472573918042312963_n.webp",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/488682996_18062845538289716_4342708287959605926_n.webp",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/489008276_18062845526289716_5421714685021858327_n.webp",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/495793630_735025695517020_2573972600013434429_n.jpg",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/496802007_735026128850310_7699650195732393117_n.jpg",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/AQOZXlUJOvcD1eboXcZZa6opmAfRZ4dcu5IoA3IpJjrIPEyDy5JEhfVn_gYNkfiNI3crAuDdyBan7jOPQi6Qw7L2uMtbykQHQgQ.mp4",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/AQPkCckD8aWdRpptxvn4PRReeuG7aMUb-gk9GlFFFzF8fwP4emQ92cVAg3pK-46NMEHoKOBvq8ZSz5YI6YUQtks.mp4",
+  ] as string[],
 };

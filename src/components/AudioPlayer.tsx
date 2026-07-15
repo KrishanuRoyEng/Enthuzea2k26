@@ -12,6 +12,29 @@ export default function AudioPlayer() {
   // without causing stale closures or re-registering listeners
   const isPlayingRef = useRef(false);
   const hasInteractedRef = useRef(false);
+  const isSuppressedRef = useRef(false);
+  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const fadeAudio = useCallback((targetVol: number, durationMs: number = 500, onComplete?: () => void) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+
+    const startVol = audio.volume;
+    const steps = 20;
+    const stepVol = (targetVol - startVol) / steps;
+    let step = 0;
+
+    fadeIntervalRef.current = setInterval(() => {
+      step++;
+      const nextVol = startVol + stepVol * step;
+      audio.volume = Math.max(0, Math.min(1, nextVol));
+      if (step >= steps) {
+        if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+        if (onComplete) onComplete();
+      }
+    }, Math.floor(durationMs / steps));
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -68,21 +91,20 @@ export default function AudioPlayer() {
     };
 
     const handlePauseAudioEvent = () => {
-      const audio = audioRef.current;
-      if (audio && isPlayingRef.current) {
-        audio.pause();
-        setIsPlaying(false);
-        isPlayingRef.current = false;
+      isSuppressedRef.current = true;
+      if (audioRef.current && isPlayingRef.current) {
+        fadeAudio(0, 500, () => {
+          if (audioRef.current) audioRef.current.pause();
+        });
       }
     };
 
     const handleResumeAudioEvent = () => {
+      isSuppressedRef.current = false;
       const audio = audioRef.current;
-      if (audio && hasInteractedRef.current) {
-        audio.play().then(() => {
-          setIsPlaying(true);
-          isPlayingRef.current = true;
-        }).catch(() => {});
+      if (audio && hasInteractedRef.current && isPlayingRef.current) {
+        audio.play().catch(() => {});
+        fadeAudio(0.1, 500); // Fade back up to a reasonable baseline, scroll will take over
       }
     };
 
@@ -102,6 +124,8 @@ export default function AudioPlayer() {
     if (!isPlaying) return;
 
     const updateVolume = () => {
+      if (isSuppressedRef.current) return;
+      
       const audio = audioRef.current;
       if (!audio) return;
 
