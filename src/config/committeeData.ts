@@ -101,7 +101,7 @@ export const committeeData: {
       title: "Treasurers Committee",
       color: "gold",
       leads: [
-        { name: "Mr. Somnath Roy", role: "Treasurer", designation: "GM", photoUrl: null },
+        { name: "Mr. Somnath Roy", role: "Treasurer", designation: "GM", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Treasurers/IMG-20260716-WA0020.jpg" },
         { name: "Dr. Somnath Das", role: "Joint Treasurer", designation: "TIC, ME", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Treasurers/somnath-das.webp" },
         { name: "Dr. Arpan Dutta", role: "Joint Treasurer", designation: "Asso. Prof. Chemistry", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Treasurers/arpan-dutta.webp" },
       ],
