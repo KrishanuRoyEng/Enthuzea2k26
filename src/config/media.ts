@@ -64,6 +64,7 @@ export const MEDIA_CONFIG = {
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/495793630_735025695517020_2573972600013434429_n.jpg",
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/496802007_735026128850310_7699650195732393117_n.jpg",
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/AQPkCckD8aWdRpptxvn4PRReeuG7aMUb-gk9GlFFFzF8fwP4emQ92cVAg3pK-46NMEHoKOBvq8ZSz5YI6YUQtks.mp4",
-
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/WhatsApp%20Video%202026-07-16%20at%201.34.51%20PM.mp4",
+    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/VID-20260716-WA0015.mp4"
   ] as string[],
 };

@@ -200,6 +200,7 @@ export const committeeData: {
         { name: "Mr. Swadhin Adhikari", designation: "IT Administrator", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Website%2CDigitalPromo/Swadhin_Adhikari.jpg" },
         { name: "Mrs. Kalloini Banerjee", designation: "Asst. Professor, ECE", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Website%2CDigitalPromo/kallolini-banerjee.webp" },
         { name: "Mrs. Pallabi Bharati", designation: "Asst. Professor, EEE", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Website%2CDigitalPromo/pallavi-bharati.webp" },
+        { name: "Mr. Krishanu Roy", designation: "Student Website Developer", photoUrl: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Website%2CDigitalPromo/Krishanu_Roy" }
       ],
     },
     {
