@@ -63,7 +63,7 @@ export const MEDIA_CONFIG = {
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/489008276_18062845526289716_5421714685021858327_n.webp",
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/495793630_735025695517020_2573972600013434429_n.jpg",
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/496802007_735026128850310_7699650195732393117_n.jpg",
-    "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/AQOZXlUJOvcD1eboXcZZa6opmAfRZ4dcu5IoA3IpJjrIPEyDy5JEhfVn_gYNkfiNI3crAuDdyBan7jOPQi6Qw7L2uMtbykQHQgQ.mp4",
     "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Cultural/Gallery/AQPkCckD8aWdRpptxvn4PRReeuG7aMUb-gk9GlFFFzF8fwP4emQ92cVAg3pK-46NMEHoKOBvq8ZSz5YI6YUQtks.mp4",
+
   ] as string[],
 };
