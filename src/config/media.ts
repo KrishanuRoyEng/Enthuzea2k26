@@ -16,6 +16,11 @@ export const MEDIA_CONFIG = {
   // The showcase video that plays automatically on the home page stage
   SHOWCASE_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/stage.mp4",
 
+  // Stage Section Image Overrides
+  INVITATION_IMAGE_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/Invitation.mp4",
+  DAY_1_IMAGE_URL: "",
+  DAY_2_IMAGE_URL: "",
+
   /**
    * ─── Preloader Sound Effects (Optional) ─────────────────────────────────
    *

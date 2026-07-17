@@ -4,10 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MEDIA_CONFIG } from "@/config/media";
 
-// You can add your Vercel Blob URLs here later. 
-// When they have a URL, it will automatically override the text and display the image!
-const DAY_1_IMAGE_URL = "";
-const DAY_2_IMAGE_URL = "";
+// The image URLs are now pulled directly from MEDIA_CONFIG
 
 // Base bracket (Static)
 const StageLightBase = ({ className }: { className?: string }) => (
@@ -49,64 +46,24 @@ const StageLightHead = ({ className }: { className?: string }) => (
 
 export default function ShowcaseVideo() {
   const containerRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   
-  // Tabs: 1 = DAY 1, 0 = STAGE, 2 = DAY 2
+  // Tabs: 1 = DAY 1, 0 = INVITATION, 2 = DAY 2
   const [activeTab, setActiveTab] = useState<0 | 1 | 2>(0);
 
-  // Intelligent Play/Pause to save mobile hardware decoders
+  // Intersection Observer for scroll-in fade animation
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => { 
         setIsVisible(entry.isIntersecting);
-        if (videoRef.current) {
-          if (entry.isIntersecting && !isModalOpen && activeTab === 0) {
-            videoRef.current.play().catch(() => {});
-          } else {
-            videoRef.current.pause();
-          }
-        }
       },
       { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [isModalOpen, activeTab]);
-
-  // Listen to global modal open/close events to pause this video
-  useEffect(() => {
-    const handlePause = () => {
-      setIsModalOpen(true);
-      if (videoRef.current) videoRef.current.pause();
-    };
-    const handleResume = () => {
-      setIsModalOpen(false);
-      if (videoRef.current && isVisible && activeTab === 0) {
-        videoRef.current.play().catch(() => {});
-      }
-    };
-    window.addEventListener("pause-audio", handlePause);
-    window.addEventListener("resume-audio", handleResume);
-    return () => {
-      window.removeEventListener("pause-audio", handlePause);
-      window.removeEventListener("resume-audio", handleResume);
-    };
-  }, [isVisible, activeTab]);
-  
-  // Tab change pause/play logic
-  useEffect(() => {
-    if (videoRef.current) {
-      if (activeTab === 0 && isVisible && !isModalOpen) {
-        videoRef.current.play().catch(() => {});
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  }, [activeTab, isVisible, isModalOpen]);
+  }, []);
 
   return (
     <section 
@@ -225,19 +182,56 @@ export default function ShowcaseVideo() {
 
           {/* Cinematic Scanlines */}
           <div className="absolute inset-0 pointer-events-none z-30 opacity-[0.15] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
-          {/* PERMANENT STAGE VIDEO (Always mounted to prevent play/pause remount bugs) */}
-          <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-500 z-10 ${activeTab === 0 ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-[5px] scale-105 pointer-events-none"}`}>
-            <video
-              ref={videoRef}
-              src={MEDIA_CONFIG.SHOWCASE_VIDEO_URL}
-              className="w-full h-full object-cover"
-              muted
-              loop
-              playsInline
-              preload="auto"
-            >
-              <source src={MEDIA_CONFIG.SHOWCASE_VIDEO_URL} type="video/mp4" />
-            </video>
+          
+          {/* PERMANENT INVITATION CARD (Always mounted, replaces the old video) */}
+          <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-700 z-10 overflow-hidden ${activeTab === 0 ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-[5px] scale-105 pointer-events-none"}`}>
+            {MEDIA_CONFIG.INVITATION_IMAGE_URL ? (
+              <div className="absolute inset-0 w-full h-full p-4 sm:p-8 flex items-center justify-center pointer-events-none">
+                {/* Pulsating Glow Behind the Image */}
+                <motion.div
+                  className="absolute w-3/4 h-3/4 bg-marigold/20 rounded-full blur-[80px]"
+                  animate={{
+                    scale: [0.8, 1.2, 0.8],
+                    opacity: [0.3, 0.7, 0.3],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* The Floating Image */}
+                <motion.img 
+                  src={MEDIA_CONFIG.INVITATION_IMAGE_URL} 
+                  alt="Enthuzea Invitation"
+                  className="relative w-full h-full object-contain drop-shadow-[0_0_20px_rgba(245,166,35,0.3)] z-10"
+                  animate={{
+                    y: ["-1.5%", "1.5%", "-1.5%"],
+                    scale: [0.98, 1, 0.98],
+                    rotateZ: [-1, 1, -1],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-black/90 to-[#1A1F3B] flex flex-col items-center justify-center p-6 sm:p-10">
+                <p className="text-[10px] sm:text-xs text-marigold font-body uppercase tracking-[0.4em] mb-4 bg-marigold/10 px-4 py-1.5 rounded-full border border-marigold/20 shadow-inner">
+                  You Are Invited
+                </p>
+                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-gold-shimmer to-terracotta drop-shadow-lg tracking-widest uppercase text-center w-full leading-tight">
+                  Grand Invitation
+                </h3>
+                <p className="text-sm sm:text-base text-cream/70 mt-6 max-w-md text-center font-body">
+                  Join us for the most spectacular cultural fest of the year. Add the image URL to config to replace this text.
+                </p>
+              </div>
+            )}
           </div>
           
           <AnimatePresence mode="wait">
@@ -252,9 +246,9 @@ export default function ShowcaseVideo() {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0 w-full h-full bg-gradient-to-br from-black/90 to-[#1A1F3B] flex flex-col items-center justify-center p-6 sm:p-10"
               >
-                {DAY_1_IMAGE_URL ? (
+                {MEDIA_CONFIG.DAY_1_IMAGE_URL ? (
                   <img 
-                    src={DAY_1_IMAGE_URL} 
+                    src={MEDIA_CONFIG.DAY_1_IMAGE_URL} 
                     alt="Day 1 Live Band" 
                     className="absolute inset-0 w-full h-full object-cover opacity-90"
                   />
@@ -264,8 +258,8 @@ export default function ShowcaseVideo() {
                       <p className="text-[10px] sm:text-xs text-marigold font-body uppercase tracking-[0.4em] mb-2 sm:mb-4 bg-marigold/10 px-4 py-1.5 rounded-full border border-marigold/20 shadow-inner">
                         Live Band
                       </p>
-                      {/* Fixed cutoff by removing fixed width/scaling and allowing flex wrap */}
-                      <h3 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-gold-shimmer to-terracotta drop-shadow-[0_0_15px_rgba(245,166,35,0.5)] tracking-widest uppercase text-center w-full leading-tight py-2">
+                      {/* Scaled down font sizes and tracking to ensure the text never exceeds the parent container's overflow-hidden boundary */}
+                      <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-gold-shimmer to-terracotta drop-shadow-[0_0_15px_rgba(245,166,35,0.5)] tracking-wide sm:tracking-wider uppercase text-center w-full leading-normal py-2 px-2">
                         Meghomollar
                       </h3>
                     </div>
@@ -295,20 +289,21 @@ export default function ShowcaseVideo() {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0 w-full h-full bg-gradient-to-br from-black/90 to-[#1A1F3B] flex flex-col items-center justify-center p-6 sm:p-10"
               >
-                {DAY_2_IMAGE_URL ? (
+                {MEDIA_CONFIG.DAY_2_IMAGE_URL ? (
                   <img 
-                    src={DAY_2_IMAGE_URL} 
-                    alt="Day 2 Live Band" 
+                    src={MEDIA_CONFIG.DAY_2_IMAGE_URL} 
+                    alt="Day 2 Singer" 
                     className="absolute inset-0 w-full h-full object-cover opacity-90"
                   />
                 ) : (
                   <>
                     <div className="flex-1 flex flex-col items-center justify-center w-full z-10">
                       <p className="text-[10px] sm:text-xs text-marigold font-body uppercase tracking-[0.4em] mb-2 sm:mb-4 bg-marigold/10 px-4 py-1.5 rounded-full border border-marigold/20 shadow-inner">
-                        Live Band
+                        Singer
                       </p>
-                      <h3 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-cream drop-shadow-md tracking-widest uppercase text-center w-full leading-tight py-2">
-                        To Be Revealed
+                      {/* Scaled down font sizes and tracking to ensure the text never exceeds the parent container's overflow-hidden boundary */}
+                      <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-gold-shimmer to-terracotta drop-shadow-[0_0_15px_rgba(245,166,35,0.5)] tracking-wide sm:tracking-wider uppercase text-center w-full leading-normal py-2 px-2">
+                        Ami Mishra
                       </h3>
                     </div>
                     
