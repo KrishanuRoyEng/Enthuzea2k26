@@ -12,8 +12,8 @@ import {
    CONSTANTS
    ═══════════════════════════════════════════════════════════════ */
 
-// Fest date — July 21, 2026, 00:00:00 IST
-const FEST_DATE = new Date("2026-07-21T00:00:00+05:30").getTime();
+// Fest date — July 21, 2026, 11:00:00 IST
+const FEST_DATE = new Date("2026-07-21T11:00:00+05:30").getTime();
 
 const FEST_NAME = "Enthuzea 2k26";
 const FEST_SUBTITLE = "SVIST Annual Cultural Fest";

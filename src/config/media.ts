@@ -11,10 +11,10 @@ export const MEDIA_CONFIG = {
 
   // The video that plays when you click "Explore Enthuzea"
   // ⚠️ Re-encoded to 30fps for mobile compatibility — upload trailer_30fps.mp4 to Blob and update this URL
-  MODAL_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/trailer6.mp4",
+  MODAL_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/stage.mp4",
 
   // The showcase video that plays automatically on the home page stage
-  SHOWCASE_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/main.mp4",
+  SHOWCASE_VIDEO_URL: "https://3hay9hfruoplmksz.public.blob.vercel-storage.com/stage.mp4",
 
   /**
    * ─── Preloader Sound Effects (Optional) ─────────────────────────────────
